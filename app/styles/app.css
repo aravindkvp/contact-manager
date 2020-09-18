@@ -254,3 +254,6 @@ a{
     40% { opacity: 1; } 
   }
 
+  .fixed{
+     position: fixed; 
+  }
