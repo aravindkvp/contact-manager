@@ -1,0 +1,39 @@
+<div class="border m-1">
+    <div class="form-title">Contact</div>
+    <table class="form-parent m-1">
+        <tr class="form-input">
+            <td>ID:</td>
+            <td>{{this.model.id}}</td>
+        </tr>
+        <tr class="form-input">
+            <td>First Name:</td>
+            <td> {{this.model.firstName}}</td>
+        </tr>
+        <tr class="form-input">
+            <td>Last Name:</td>
+            <td> {{this.model.lastName}}</td>
+        </tr>
+        <tr class="form-input">
+            <td>Age:</td>
+            <td> {{this.model.age}}</td>
+        </tr>
+        <tr class="form-input">
+            <td>Mobile Number:</td>
+            <td> {{this.model.mobileNumber}}</td>
+        </tr>
+        <tr class="form-input">
+            <td>Email ID:</td>
+            <td> {{this.model.emailID}}</td>
+        </tr>
+        <tr class="form-input">
+            <td colspan="2">
+                <div class="nav-link nav-link-2 border pointer" {{action "edit"}}>Edit Contact</div>
+            </td>
+        </tr>
+        <tr class="form-input">
+            <td colspan="2">
+                <div class="nav-link nav-link-2 border pointer" {{action "delete"}}>Delete Contact</div>
+            </td>
+        </tr>
+    </table>
+</div>

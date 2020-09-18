@@ -7,4 +7,14 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function() {
+  this.route('home',function(){
+    this.route('contacts', function() {
+      this.route('index', function() {
+        this.route('view-contact',{path: '/view-contact/:id'});
+      });
+      this.route('new-contact');
+      this.route('edit-contact',{path: '/edit-contact/:id'});
+    });
+    this.route('about');
+  });
 });

@@ -1,0 +1,26 @@
+<div class="contacts-header border">
+    <LinkTo @route="home.contacts.new-contact" class="nav-link nav-link-2 border">Add New Contact</LinkTo>
+</div>
+<div class="contacts-body">
+    <table class="table">
+        <thead class="thead">
+                <th class="th">ID</th>
+                <th class="th">Name</th>
+                <th class="th">Age</th>
+                <th class="th">Mobile Number</th>
+                <th class="th">Email ID</th>
+        </thead>
+        <tbody class="tbody">
+            {{#each this.model as |contact|}}
+                <tr class="tr contact" {{action "view" contact.id}}>
+                    <td class="td">{{contact.id}}</td>
+                    <td class="td">{{contact.fullName}}</td>
+                    <td class="td">{{contact.age}}</td>
+                    <td class="td">{{contact.mobileNumber}}</td>
+                    <td class="td">{{contact.emailID}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+{{outlet}}

@@ -1,0 +1,38 @@
+<div class="form-title">{{this.title}}</div>
+<table class="form-parent">
+    <tr class="form-input">
+        <td>First Name:</td>
+        <td>
+            <Input @value={{this.contact.firstName}} placeholder={{this.placeHolder.firstName}}></Input>
+        </td>
+    </tr>
+    <tr class="form-input">
+        <td>Last Name:</td>
+        <td>
+            <Input @value={{this.contact.lastName}} placeholder={{this.placeHolder.lastName}}></Input>
+        </td>
+    </tr>
+    <tr class="form-input">
+        <td>Age:</td>
+        <td>
+            <Input @value={{this.contact.age}} placeholder={{this.placeHolder.age}}></Input>
+        </td>
+    </tr>
+    <tr class="form-input">
+        <td>Mobile Number:</td>
+        <td>
+            <Input @value={{this.contact.mobileNumber}} placeholder={{this.placeHolder.mobileNumber}}></Input>
+        </td>
+    </tr>
+    <tr class="form-input">
+        <td>Email ID:</td>
+        <td>
+            <Input @value={{this.contact.emailID}} placeholder={{this.placeHolder.emailID}}></Input>
+        </td>
+    </tr>
+    <tr class="form-input">
+        <td colspan="2">
+            <div class="nav-link nav-link-2 border pointer" {{action "submit"}}>Submit</div>
+        </td>
+    </tr>
+</table>
