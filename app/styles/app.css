@@ -255,5 +255,7 @@ a{
   }
 
   .fixed{
-     position: fixed; 
+     position: fixed;
+     display: flex;
+
   }
