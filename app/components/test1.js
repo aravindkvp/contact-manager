@@ -4,4 +4,5 @@ export default Component.extend({
     name: 'Aravind',
     regNo: 1612015,
     department: 'CSE',
+    spouse: 'Al Sameema'
 });
