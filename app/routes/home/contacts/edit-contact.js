@@ -9,10 +9,12 @@ export default Route.extend({
     },
     setupController(controller,model){
       //  controller.set('contact',model);
-        controller.setContactValues(model);
         this._super(...arguments);
     },
     actions:{
+        didTransition(){
+            this.controller.setContactValues();
+        },
         submit(){
             if(this.controller.check()){
                 this.controller.setModelValues();

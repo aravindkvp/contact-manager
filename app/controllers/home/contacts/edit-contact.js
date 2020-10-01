@@ -1,50 +1,62 @@
 import Controller from '@ember/controller';
-import Contact from 'contacts/controllers/home/contacts/new-contact';
 
-export default Contact.extend({
+export default Controller.extend({
     title: 'Edit Contact',
-    
-    /*check(){
+
+    setContactValues(){
+        this.set('contact',JSON.parse(JSON.stringify(this.model)));
+    },
+    setModelValues(){
+        Object.assign(this.model,this.contact);
+    },
+    check(){
         let flag = true;
+        let message = '';
         
-        if(this.model.firstName.length > 20 || this.model.firstName.length == 0){
+        if(this.contact.firstName.length > 20){
             flag = false;
-            this.set('model.firstName',null);
-            this.set('placeHolder.firstName','Enter Valid First Name');
+            message = message + 'First Name must be less than 20 characters\n\n';
+        }
+        else if(this.contact.firstName.length == 0){
+            flag = false;
+            message = message + 'First Name must not be empty\n\n';
         }
         
-        if(this.model.lastName.length > 20 || this.model.lastName.length == 0){
+        if(this.contact.lastName.length > 20 ){
             flag = false;
-            this.set('model.lastName',null);
-            this.set('placeHolder.lastName','Enter Valid last Name');
+            message = message + 'Last Name must be less than 20 characters\n\n';
+        }
+        else if(this.contact.lastName.length == 0){
+            flag = false;
+            message = message + 'Last Name must not be empty\n\n';
         }
        
 
-        this.set('model.age',Number(this.model.age));
+        this.set('contact.age',Number(this.contact.age));
         
-        if(!Number.isInteger(this.model.age) || this.model.age<1 || this.model.age>99){
+        if(!Number.isInteger(this.contact.age) || this.contact.age<1 || this.contact.age>99){
             flag = false;
-            this.set('model.age',null);
-            this.set('placeHolder.age','Enter Valid Age');
+            message = message + 'Enter Valid Age\n\n';
+        }
+
+        let mobileRegx = /[6789][0-9]{9}$/;
+        if(mobileRegx.test(this.contact.mobileNumber) == false){
+            flag = false;
+            message = message + 'Enter Valid Mobile Number\n\n';
         }
         
-        
-        var mobileRegx = /[6789][0-9]{9}$/;
-        if(mobileRegx.test(this.model.mobileNumber) == false){
+        let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        if(reg.test(this.contact.emailID) == false){
             flag = false;
-            this.set('model.mobileNumber',null);
-            this.set('placeHolder.mobileNumber','Enter Valid Mobile Number');
+            message = message + 'Enter Valid EmailID\n\n';
         }
-        
-        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        if(reg.test(this.model.emailID) == false){
-            flag = false;
-            this.set('model.emailID',null);
-            this.set('placeHolder.emailID','Enter valid Email ID');
+
+        if(!flag){
+            alert(message);
         }
 
         return flag;
-    },*/
+    },
 });
 
 
