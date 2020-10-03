@@ -3,28 +3,30 @@ import Route from '@ember/routing/route';
 export default Route.extend({
     templateName: 'home/contacts/new-contact',
     model({id}){
-        let record =  this.store.findRecord('contact',id);
-        this.set('currentRecord',record);
-        return record;
+        return this.store.findRecord('contact',id); 
     },
     setupController(controller,model){
-      //  controller.set('contact',model);
+        controller.set('contact',JSON.parse(JSON.stringify(model)));
         this._super(...arguments);
     },
     actions:{
-        didTransition(){
-            this.controller.setContactValues();
-        },
         submit(){
-            if(this.controller.check()){
-                this.controller.setModelValues();
-                this.currentRecord.then((contact)=> {
-                    if(contact.get('hasDirtyAttributes')){
-                        contact.save();
-                    }
+            let controller = this.controller;
+            let validation = null;
+            Object.assign(controller.model,controller.contact);
+            validation = controller.model.check();
+            if(validation.flag){
+                controller.model.save().then(contact => {
+                    this.transitionTo('home.contacts.index.view-contact',contact.id);
                 });
-                this.transitionTo('home.contacts.index.view-contact',this.currentRecord.get('id'));
+            }
+            else if(!validation.flag){
+                alert(validation.message);
             }
         }
     }
+    // redirect to the view-contact route after the promise is resolved
+    //remove setContactValues,setModelValues,didTransition
+    //Remove 'currentRecord' 
+    
 });
