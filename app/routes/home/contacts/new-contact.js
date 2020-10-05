@@ -1,12 +1,9 @@
 import Route from '@ember/routing/route';
+import Contact from 'contacts/routes/home/contacts/edit-contact';
 
-export default Route.extend({
+export default Contact.extend({
     model(){
         return this.store.createRecord('contact');
-    },
-    setupController(controller,model){
-        controller.set('contact',JSON.parse(JSON.stringify(model)))
-        this._super(...arguments);
     },
     actions:{
         willTransition(){
@@ -14,21 +11,6 @@ export default Route.extend({
                 this.controller.model.destroyRecord();
             }
         },
-        submit(){
-            let controller = this.controller;
-            let validation = null;
-            Object.assign(controller.model,controller.contact);
-            validation = controller.model.check();
-            if(validation.flag){
-                controller.model.save().then(contact => {
-                    this.transitionTo('home.contacts.index.view-contact',contact.id);
-                });
-            }
-            else if(!validation.flag){
-                alert(validation.message);
-            }
-        },
-        
     },
 
     //To remove the clearValues Method
