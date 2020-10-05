@@ -16,13 +16,18 @@ export default Route.extend({
             let validation = null;
             Object.assign(controller.model,controller.contact);
             validation = controller.model.check();
-            if(validation.flag){
-                controller.model.save().then(contact => {
-                    this.transitionTo('home.contacts.index.view-contact',contact.id);
-                });
+            if(validation){
+                alert(validation);
             }
-            else if(!validation.flag){
-                alert(validation.message);
+            else{
+                if(controller.model.get('hasDirtyAttributes')){
+                    controller.model.save().then(contact => {
+                        this.transitionTo('home.contacts.index.view-contact',contact);
+                    });
+                }
+                else{
+                    this.transitionTo('home.contacts.index.view-contact',controller.model);
+                }
             }
         }
     }
